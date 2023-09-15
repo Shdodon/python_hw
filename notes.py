@@ -2,7 +2,7 @@ import os
 import time
 
 def create_note():
-    filename = input("Введите заголовок заметки: ") + ".txt"
+    filename = input("Введите заголовок заметки: ") + ".csv"
     with open(filename, "w") as file:
         content = input("Введите тело заметки: ")
         file.write(content)
@@ -10,13 +10,13 @@ def create_note():
 
 def show_notes():
     files = os.listdir()
-    txt_files = [file for file in files if file.endswith(".txt")]
+    txt_files = [file for file in files if file.endswith(".csv")]
 
     print("Открыть список заметок:")
     for file in txt_files:
         print(f"- {file}")
 
-    filename = input("Введите заголовок заметки для просмотра: ") + ".txt"
+    filename = input("Введите заголовок заметки для просмотра: ") + ".csv"
     if filename in txt_files:
         with open(filename, "r") as file:
             content = file.read()
@@ -26,7 +26,7 @@ def show_notes():
         print("Заметка не найдена!")
 
 def del_note():
-    filename = input("Введите заголовок заметки, которую вы хотите удалить: ") + ".txt"
+    filename = input("Введите заголовок заметки, которую вы хотите удалить: ") + ".csv"
     if os.path.exists(filename):
         os.remove(filename)
         print(f'Заметка "{filename}" удалена.')
@@ -34,7 +34,7 @@ def del_note():
         print("Заметка не найдена.")
         
 def edit_note():
-    filename = input("Введите заголовок заметки, которую вы хотите редактировать: ") + ".txt"
+    filename = input("Введите заголовок заметки, которую вы хотите редактировать: ") + ".csv"
     with open(filename, "r") as file:
         content = file.read()
         print(f'Текущее содержимое заметки "{filename}":')
@@ -75,7 +75,7 @@ def find_note_for_date():
     date = time.strptime(date_str, "%Y-%m-%d")
 
     files = os.listdir()
-    txt_files = [file for file in files if file.endswith(".txt")]
+    txt_files = [file for file in files if file.endswith(".csv")]
 
     print(f"Заметки созданные {date_str}:")
     for file in txt_files:
